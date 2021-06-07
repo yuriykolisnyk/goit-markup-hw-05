@@ -105,6 +105,19 @@ img {
 .header .header-link-current {
     color: var(--blue-color-text);
 }
+.header-link-current {
+    position: relative;
+}
+.header-link-current::after {
+    content: "";
+    display: block;
+    position: absolute;
+    margin-top: 28px;
+    width: 100%;
+    height: 4px;
+    background-color: var(--blue-color-text);
+    border-radius: 2px;
+}
 .icon-envelope,
 .icon-smartphone {
     fill: currentColor;
@@ -139,6 +152,24 @@ img {
 .button-orderservice:focus {
     color: var(--white-color);
     background-color: #188CE8;
+}
+.button-close-modal {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: inherit;
+    cursor: pointer;
+    margin-left: auto;
+}
+.icon-cross {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .button-portfolio-current,
 .button-portfolio {
@@ -232,6 +263,25 @@ img {
 }
 .studio-image:not(:last-child) {
     margin-right: 30px;
+}
+.studio-image {
+    position: relative;
+}
+.studio-solution-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    background-color: rgba(47, 48, 58, 0.8);
+    color: var(--white-color);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    text-align: center;
+    text-transform: uppercase;
 }
 .studio-team {
     background-color: var(--grey-background-color);
@@ -327,6 +377,35 @@ img {
 .icon-client:focus {
     fill: currentColor;
 }
+/* Модальное окно */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    height: 581px;
+    width: 528px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--white-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 
+    0px 1px 1px rgba(0, 0, 0, 0.14), 
+    0px 2px 1px rgba(0, 0, 0, 0.2);  
+}
+
+
 /* Стили основного контента Портфолио*/
 .porfolio-nav {
     display: flex;
@@ -345,6 +424,33 @@ img {
 }
 .portfolio-project > .porfolio-card:not(:nth-last-child(-n + 3)) {
     margin-bottom: 30px;
+}
+.portfolio-overlay {
+    position: relative;
+}
+.portfolio-overlay::before {
+    content:"";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9);
+    position: absolute;
+    opacity: 0;
+}
+.porfolio-card-hover:hover .portfolio-overlay::before,
+.porfolio-card-hover:hover .portfolio-overlay-text {
+    opacity: 1;
+}
+.portfolio-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 322px;
+    font-size: 18px;
+    line-height: 1.556;
+    letter-spacing: 0.03em;
+    color: var(--white-color);
+    opacity: 0;
 }
 .porfolio-card-hover {
     display: inline-block;
