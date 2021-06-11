@@ -10,6 +10,7 @@
     --grey-background-color: #F5F4FA;
     --main-font: 'Roboto', sans-serif;
     --accent-font: 'Raleway', sans-serif;
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* Общие стили */
 body {
@@ -90,7 +91,7 @@ img {
     letter-spacing: 0.02em;
     font-family: inherit;
     color: inherit;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function);
 }
 .header-address-grey {
     display: flex;
@@ -148,9 +149,9 @@ img {
     letter-spacing: 0.06em; 
     color: var(--white-color);
     background-color: var( --blue-color-text);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 .button-orderservice:hover,
 .button-orderservice:focus {
@@ -190,9 +191,9 @@ img {
     line-height: 1.63;
     color: var(--black-color-text);
     background-color: var(--grey-background-color);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shado 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function),
+    box-shado 250ms var(--timing-function);
 }
 .button-portfolio-current,
 .button-portfolio:hover,
@@ -341,8 +342,8 @@ img {
     height: 44px;
     border-radius: 50%;
     color: var(--grey-color-icon);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function);
 }
 .icon-social {
     display: flex;
@@ -374,8 +375,8 @@ img {
     color: var(--grey-color-icon);
     border: 1px solid var(--grey-color-icon);
     border-radius: 4px;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function);
 }
 .icon-client {
     fill: currentColor;
@@ -397,17 +398,23 @@ img {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+
 }
 .backdrop.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
 .modal {
     position: absolute;
     top: 50%;
     left:50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 300ms Var(--timing-function);
     height: 581px;
     width: 528px;
     padding: 8px;
@@ -438,37 +445,42 @@ img {
 }
 .portfolio-overlay {
     position: relative;
+    overflow: hidden;
 }
 .portfolio-overlay::before {
+    position: absolute;
     content:"";
     width: 100%;
     height: 100%;
     background-color: rgba(33, 150, 243, 0.9);
-    position: absolute;
     opacity: 0;
+    transform: translateY(100%);
+    transition: transform  250ms var(--timing-function);
 }
 .portfolio-overlay-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 63px;
+    left: 24px;
     width: 322px;
     font-size: 18px;
     line-height: 1.556;
     letter-spacing: 0.03em;
     color: var(--white-color);
     opacity: 0;
+    transform: translateY(100%);
+    transition: transform  250ms var(--timing-function);   
+}
+.portfolio-overlay:hover::before,
+.portfolio-overlay:focus::before,
+.portfolio-overlay:hover .portfolio-overlay-text,
+.portfolio-overlay:focus .portfolio-overlay-text {
+    opacity: 1;
+    transform: translateY(0%);
 }
 .porfolio-card-hover {
-    display: inline-block;
+    display: block;
     text-decoration: none;
-    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.porfolio-card-hover:hover .portfolio-overlay::before,
-.porfolio-card-hover:focus .portfolio-overlay::before,
-.porfolio-card-hover:hover .portfolio-overlay-text,
-.porfolio-card-hover:focus .portfolio-overlay-text {
-    opacity: 1;
+    transition: box-shadow 250ms var(--timing-function);
 }
 .porfolio-card-hover:hover,
 .porfolio-card-hover:focus {
@@ -521,8 +533,8 @@ img {
     text-decoration: none;
     font-family: inherit;
     color: inherit;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);  
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function);  
 }   
 .footer-address {
     display: block;
@@ -565,8 +577,8 @@ img {
     border-radius: 50%;
     color: var(--white-color);
     background-color:rgba(255, 255, 255, 0.1);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function);
 }
 .footer-icon-social {
     display: flex;
